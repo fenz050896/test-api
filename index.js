@@ -11,6 +11,7 @@ const database = process.env.DB_NAME;
 const password = process.env.DB_PASS;
 const port = process.env.DB_PORT;
 const dialect = process.env.DB_DIALECT;
+const serverPort = process.env.SERVER_PORT;
 const sequelize = new Sequelize(database, user, password, {
   host,
   port,
@@ -134,34 +135,31 @@ app.get('/users/:id', async (req, res) => {
 
 /**
  * @swagger
+ * components:
+ *   schemas:
+ *     UserData:
+ *       properties:
+ *         name:
+ *           type: string
+ *         dob:
+ *           type: string
+ *         address:
+ *           type: string
+ *         description:
+ *           type: string
  * /users:
  *   post:
  *     summary: Insert a user
- *     parameters:
- *      - in: path
- *        name: name
- *        schema:
- *          type: string
+ *     requestBody:
+ *        description: User data to POST
  *        required: true
- *        description: User name
- *      - in: path
- *        name: dob
- *        schema:
- *          type: date
- *        required: false
- *        description: user date of birth
- *      - in: path
- *        name: address
- *        schema:
- *          type: string
- *        required: false
- *        description: user address
- *      - in: path
- *        name: description
- *        schema:
- *          type: string
- *        required: false
- *        description: user description
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/UserData'
+ *          application/x-www-form-urlencoded:
+ *            schema:
+ *              $ref: '#/components/schemas/UserData'
  *     description: Insert a user.
  *     responses:
  *       201:
@@ -211,7 +209,7 @@ app.post('/users', async (req, res) => {
  *     responses:
  *       204:
  *       500:
- *         description: Edit a user by id.
+ *         description: Error while editing a user by id.
  *         content:
  *           application/json:
  *             schema:
@@ -259,7 +257,7 @@ app.put('/users/:id', async (req, res) => {
  *                  message:
  *                    type: string
  *       500:
- *         description: Delete a user.
+ *         description: Error while deleting a user.
  *         content:
  *           application/json:
  *             schema:
@@ -282,7 +280,7 @@ app.delete('/users/:id', async (req, res) => {
   }
 });
 
-app.listen('3478', '0.0.0.0', () => {
+app.listen(serverPort, '0.0.0.0', () => {
   console.log('RUNNING on port 3478');
 });
 

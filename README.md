@@ -10,6 +10,7 @@ DB_PASS=<fill>
 DB_NAME=<fill>
 DB_PORT=<fill>
 DB_DIALECT=<fill>
+SERVER_PORT=<fill>
 ```
 
 Create your database, then run migration in terminal or cmd:
