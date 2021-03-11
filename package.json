@@ -1,0 +1,31 @@
+{
+  "name": "test-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/fenz050896/test-api.git",
+  "author": "Ananda Fitra",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha --timeout 10000",
+    "seq:init": "sequelize-cli init",
+    "seq:model-generate": "sequelize-cli model:generate",
+    "seq:migrate": "sequelize-cli db:migrate --migrations-path database/migrations",
+    "seq:migrate:undo": "sequelize-cli db:migrate:undo:all --migrations-path database/migrations"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "pg": "^8.5.1",
+    "sequelize": "^6.5.0",
+    "swagger-jsdoc": "6",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "chai": "^4.3.3",
+    "chai-http": "^4.3.0",
+    "mocha": "^8.3.1",
+    "sequelize-cli": "^6.2.0",
+    "swagger-ui-express": "^4.1.6"
+  }
+}
